@@ -7,15 +7,11 @@
 **/
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t left_height;
-	size_t right_height;
-
-	if (!tree)
+	if (!tree || (!tree->left && !tree->right))
 		return (0);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
-
+	size_t left_height = binary_tree_height(tree->left);
+	size_t right_height = binary_tree_height(tree->right);
 /**
  * Forma abreviada de escribir un if-else que compara las alturas izquierda y
  * derecha y devuelve el valor más alto.
@@ -23,5 +19,5 @@ size_t binary_tree_height(const binary_tree_t *tree)
  * El símbolo ":" representa el Else (right_height mayor que left_height)
  * se añade "1" para contar la raíz del árbol en el total.
 **/
-	return (left_height > right_height ? left_height : right_height);
+	return ((left_height > right_height ? left_height : right_height) + 1);
 }
